@@ -6,20 +6,9 @@
           <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?">
         </div>
 
-        <Timer :time="time" /> 
-
-        <button class="button" @click="start">
-          <span class="icon">
-            <i class="fas fa-play"></i>
-          </span>
-          <span>play</span>
-        </button>
-        <button class="button" @click="stop">
-          <span class="icon">
-            <i class="fas fa-stop"></i>
-          </span>
-          <span>stop</span>
-        </button>
+        <div class="column">
+          <Clock />
+        </div>
       </div>
     </div>
   </div>
@@ -27,12 +16,12 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import Timer from "./Timer.vue"
+  import Clock from "./Clock.vue"
 
   export default defineComponent({
       name: 'Formulary',
       components: {
-        Timer
+        Clock
       },
       data () {
         return {
