@@ -6,15 +6,15 @@
           <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?">
         </div>
         <section>
-          <strong>00:00:00</strong>
+          <strong>{{ timePassed }}</strong>
         </section>
-        <button class="button">
+        <button class="button" @click="start">
           <span class="icon">
             <i class="fas fa-play"></i>
           </span>
           <span>play</span>
         </button>
-        <button class="button">
+        <button class="button" @click="stop">
           <span class="icon">
             <i class="fas fa-stop"></i>
           </span>
@@ -29,6 +29,26 @@
   import { defineComponent } from 'vue'
 
   export default defineComponent({
-      name: 'Formulary'
+      name: 'Formulary',
+      data () {
+        return {
+          time: 0
+        }
+      },
+      computed: {
+        timePassed () : string {
+          return new Date(this.time * 1000).toISOString().substr(11,8) 
+        }
+      },
+      methods: {
+        start () {
+          setInterval(() => {
+            this.time += 1
+          }, 1000)
+        },
+        stop () {
+          console.log("stop")
+        }
+      }
   })
 </script>

@@ -12,7 +12,7 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import SideBar from './components/SideBar.vue';
-import Formulary from './components/Formulary.vue';
+  import Formulary from './components/Formulary.vue';
 
   export default defineComponent({
       name: "App",
