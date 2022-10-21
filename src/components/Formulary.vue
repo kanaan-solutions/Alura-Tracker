@@ -5,9 +5,9 @@
         <div class="column is-8" role="form" aria-label="Formulário para a criação de uma nova tarefa">
           <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?">
         </div>
-        <section>
-          <strong>{{ timePassed }}</strong>
-        </section>
+
+        <Timer :time="time" /> 
+
         <button class="button" @click="start">
           <span class="icon">
             <i class="fas fa-play"></i>
@@ -27,27 +27,28 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
+  import Timer from "./Timer.vue"
 
   export default defineComponent({
       name: 'Formulary',
+      components: {
+        Timer
+      },
       data () {
         return {
-          time: 0
+          time: 0,
+          timer: 0,
         }
       },
-      computed: {
-        timePassed () : string {
-          return new Date(this.time * 1000).toISOString().substr(11,8) 
-        }
-      },
+      
       methods: {
         start () {
-          setInterval(() => {
+          this.timer = setInterval(() => {
             this.time += 1
           }, 1000)
         },
         stop () {
-          console.log("stop")
+          clearInterval(this.timer)
         }
       }
   })
