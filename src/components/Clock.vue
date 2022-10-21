@@ -23,6 +23,7 @@
 
   export default defineComponent({
       name: 'Formulary',
+      emits: ['timerFinished'],
       components: {
         Timer
       },
@@ -44,6 +45,8 @@
         stop () {
           this.timerStart = false
           clearInterval(this.timer)
+          this.$emit('timerFinished', this.time)
+          this.time = 0
         }
       }
   })
