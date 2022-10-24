@@ -1,23 +1,30 @@
 <template>
     <div class="box has-text-weight-bold">
         <div class="column is-7">
-            Descrição da tarefa
+            {{ task.description }}
         </div>
 
         <div class="column">
-            <Timer time=15 />
+            <Timer :time="task.durationInSeconds" />
         </div>
     </div>
 </template>
 
 <script lang="ts">
-    import { defineComponent } from 'vue';
+    import ITask from '@/interfaces/ITask';
+import { defineComponent, PropType } from 'vue';
     import Timer from './Timer.vue'
 
     export default defineComponent({
         name: "Task",
         components: {
             Timer,
+        },
+        props: {
+            task: {
+                type: Object as PropType<ITask>,
+                required: true,
+            }
         }
     })
 </script>

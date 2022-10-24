@@ -20,6 +20,7 @@
 
   export default defineComponent({
       name: 'Formulary',
+      emits: ["savingTasks"],
       components: {
         Clock
       },
@@ -30,8 +31,11 @@
       },
       
       methods: {
-        taskFinished (timerPassed: number): void {
-          console.log(timerPassed)
+        taskFinished (timePassed: number): void {
+          this.$emit('savingTasks', {
+            durationInSeconds: timePassed,
+            description: this.description,
+          })
           this.description = ''
         },
       }
