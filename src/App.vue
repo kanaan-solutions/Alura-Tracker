@@ -7,6 +7,9 @@
       <Formulary @savingTasks="saveTask" />
       <div class="list">
         <Task v-for="(task, index) in tasks" :key="index" :task="task" />
+        <Box v-if="isListEmpty" >
+          Você não está muito produtivo hoje :(
+        </Box>
       </div>
     </div>
   </main>
@@ -18,15 +21,21 @@
   import Formulary from './components/Formulary.vue';
   import Task from './components/Task.vue'
   import ITask from './interfaces/ITask';
+  import Box from './components/Box.vue';
 
   export default defineComponent({
       name: "App",
-      components: { SideBar, Formulary, Task },
+      components: { SideBar, Formulary, Task, Box },
       data () {
         return {
           tasks: [] as ITask[]
         }
       },
+      computed: {
+        isListEmpty (): boolean {
+          return this.tasks.length ===0
+        }
+      }, 
       methods: {
         saveTask (tasks: ITask) {
           this.tasks.push(tasks)
