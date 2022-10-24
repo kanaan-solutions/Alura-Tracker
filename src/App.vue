@@ -34,7 +34,7 @@
       },
       computed: {
         isListEmpty (): boolean {
-          return this.tasks.length ===0
+          return this.tasks.length === 0
         }
       }, 
       methods: {
