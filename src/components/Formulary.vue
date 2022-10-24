@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box form">
     <div class="colu mn">
       <div class="is-flex is-align-items-center is-justify-content-space-between">
         <div class="column is-8" role="form" aria-label="Formulário para a criação de uma nova tarefa">
@@ -41,3 +41,10 @@
       }
   })
 </script>
+
+<style>
+  .form {
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+  }
+</style>

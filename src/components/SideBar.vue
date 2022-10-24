@@ -2,7 +2,10 @@
   <header>
     <h1>
       <img src="../assets/logo.png" alt="Logo">
-    </h1>
+    </h1>7
+    <button class="button" @click="changeTheme">
+      {{ buttonText }}
+    </button>
   </header>
 </template>
 
@@ -10,7 +13,27 @@
   import { defineComponent } from 'vue'
 
   export default defineComponent({
-      name: "SideBar"
+      name: "SideBar",
+      emits: ["changedTheme"],
+      data () {
+        return {
+          darkModeActive: false
+        }
+      },
+      computed: {
+        buttonText () {
+          if(this.darkModeActive) {
+            return "Desativar Modo Escuro"
+          }
+          return "Ativar Modo Escuro"
+        }
+      },
+      methods: {
+        changeTheme() {
+          this.darkModeActive = !this.darkModeActive
+          this.$emit('changedTheme', this.darkModeActive)
+        }
+      }
   })
 </script>
 
@@ -20,6 +43,7 @@
     background: #0d3b66;
     width: 100%;
     height: 100vh;
+    text-align: center;
   }
 
   @media only screen and (max-width: 768px) {
